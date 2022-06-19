@@ -1,9 +1,14 @@
 import react from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./app/navegation/AppNavigator";
+import AudioProvider from "./app/context/AudioProvider";
 
 export default function App() {
-  return <NavigationContainer>
-    <AppNavigator />
-  </NavigationContainer>
-};
+  return (
+    <AudioProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </AudioProvider>
+  );
+}

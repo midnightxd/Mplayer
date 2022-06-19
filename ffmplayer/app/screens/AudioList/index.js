@@ -1,13 +1,24 @@
-import React from 'react';
-import { View, Text, StyleSheet} from 'react-native';
-import styles from './styles';
+import { Text, ScrollView, View } from "react-native";
+import React, { Component } from "react";
+import styles from "../AudioList/styles";
+import { AudioContext } from "../../context/AudioProvider";
+import { Ionicons } from "@expo/vector-icons";
 
-const AudioList = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Audio library</Text>
-    </View>
-  )
+export class AudioList extends Component {
+  static contextType = AudioContext;
+
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        {this.context.audioFiles.map((item) => (
+          <Text style={styles.text} key={item.id}>
+            <Ionicons name="musical-note" size={24} color="pink" />
+            {item.filename}
+          </Text>
+        ))}
+      </ScrollView>
+    );
+  }
 }
 
 export default AudioList;
