@@ -1,17 +1,16 @@
 import react from "react";
 import { StyleSheet } from "react-native";
+import color from "../../misc/color";
 
 const styles = StyleSheet.create({
-   container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-     backgroundColor: '#0F0F0F',
+  container: {
+    flex: 1,
+    backgroundColor: '#ccc',
   },
   text: {
     padding: 10,
-    color: '#ccc'
-  }
+    color: "#ccc",
+  },
 });
 
 export default styles;

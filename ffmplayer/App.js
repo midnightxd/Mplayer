@@ -2,6 +2,8 @@ import react from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AppNavigator from "./app/navegation/AppNavigator";
 import AudioProvider from "./app/context/AudioProvider";
+import { View } from "react-native";
+import AudioListItem from "./app/components/AudioListItem";
 
 export default function App() {
   return (
@@ -11,4 +13,4 @@ export default function App() {
       </NavigationContainer>
     </AudioProvider>
   );
-}
+};
