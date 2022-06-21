@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.APP_BG,
-    paddingTop: StatusBar.currentHeight + 10
+    paddingTop: StatusBar.currentHeight - StatusBar.currentHeight + 10
   }
 });
 export default styles;

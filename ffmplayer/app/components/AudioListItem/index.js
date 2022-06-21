@@ -3,6 +3,7 @@ import {  TouchableWithoutFeedback, View, Text } from "react-native";
 import styles from "./styles";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons';
 import color from "../../misc/color";
 
 const getThumbnailText =(fileName) => fileName[0];
@@ -21,17 +22,24 @@ const convertTime = minutes => {
   }
 }
 
-const AudioListItem = ({ title, duration, onOptionPress, onAudioPress}) => {
+const renderPlayPauseIcons = isPlaying => {
+  if(isPlaying) return <Ionicons name="ios-play" size={24} color="black" />
+  return <Ionicons name="ios-pause" size={24} color="black" />
+}
+
+const AudioListItem = ({ title, duration, onOptionPress, onAudioPress, isPlaying, activeListItem}) => {
   return (
     <>
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={onAudioPress}>
         <View style={styles.leftContainer}>
-          <View style={styles.thumbnail}>
-            <Text style={styles.thumbnailText}>{getThumbnailText(title)}</Text>
+          <View style={[styles.thumbnail, {backgroundColor: activeListItem ? color.SOUND_SELECT : color.THUMBNAIL_BG}]}>
+            <Text style={styles.thumbnailText}>
+              {activeListItem ? renderPlayPauseIcons(isPlaying) : getThumbnailText(title)}
+              </Text>
           </View>
           <View style={styles.titleContainer}>
-            <Text numberOfLines={1} style={styles.title}>
+            <Text numberOfLines={1} style={[styles.title, {color: activeListItem ? color.FONT_MEDIUM : color.FONT}]}>
               {title}
             </Text>
             <Text style={styles.timeText}>{convertTime(duration)}</Text>

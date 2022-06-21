@@ -1,11 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  Ionicons,
-  MaterialCommunityIcons,
-  AntDesign,
-} from "@expo/vector-icons";
-
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons, AntDesign, } from "@expo/vector-icons";
 import AudioList from "../screens/AudioList/index";
 import Player from "../screens/Player/index";
 import PlayList from "../screens/PlayList";
@@ -19,7 +15,7 @@ const AppNavigator = () => {
       screenOptions={() => ({
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: color.APP_BG,
+          backgroundColor: color.BOTTOM_TAB_NAVIGATOR,
           borderWidth: 1,
           borderTopColor: color.APP_BG,
         },
@@ -31,7 +27,14 @@ const AppNavigator = () => {
         options={{
           title: "",
           tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="headset" size={size} color={color} />;
+            return (
+              <Ionicons
+                name="headset"
+                size={25}
+                color={color}
+                style={{ marginBottom: -15 }}
+              />
+            );
           },
         }}
       />
@@ -41,7 +44,9 @@ const AppNavigator = () => {
         options={{
           title: "",
           tabBarIcon: ({ color, size }) => {
-            return <AntDesign name="play" size={size} color={color} />;
+            return (
+              <FontAwesome5 name="compact-disc" size={35} color='red' style={{marginBottom: -10}} /> 
+            );
           },
         }}
       />
@@ -54,8 +59,9 @@ const AppNavigator = () => {
             return (
               <MaterialCommunityIcons
                 name="playlist-music"
-                size={size}
+                size={25}
                 color={color.DETAILS_ICONS}
+                style={{marginBottom: -10}}
               />
             );
           },
