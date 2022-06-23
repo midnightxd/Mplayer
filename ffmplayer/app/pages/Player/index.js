@@ -1,41 +1,39 @@
 import React, { useContext } from "react";
 import { View, Text, Dimensions, Image } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
 import { AudioContext } from "../../context/AudioProvider";
+import Lottie from 'lottie-react-native';
 import Slider from "@react-native-community/slider";
 import Screen from "../../components/Screen";
 import PlayerButtom from "../../components/PlayerButtom";
-import styles from "./styles";
+import { Container, AudioCount, MusicArt, AudioName, AudioContainer, AudioController, ButtomAlign } from "./styles";
 import color from "../../misc/color";
-
+import styles from "./styles";
+import sound from '../../../assets/sound.json';
 const { width } = Dimensions.get("window");
 
 const Player = () => {
-  const context = useContext(AudioContext);
+  const  context = useContext(AudioContext);
   const { playbackPosition, playbackDuration } = context;
+
   const calculateSeebBar = () => {
     if (playbackPosition !== null && playbackDuration !== null)
       return playbackPosition / playbackDuration;
     return 0;
   };
 
-  return (
+   return (
     <Screen>
-      <View style={styles.container}>
-        <Text style={styles.audioCount}>{`${context.currentAudioIndex + 1} / ${
-          context.totalAudioCount
-        }`}</Text>
-        <View style={styles.contentIcon}>
-          {/* <MaterialCommunityIcons name="music-circle" size={250} color={context.isPlaying ? color.DETAILS_ICONS : color.TRANSPARENCY} /> */}
-          <Image
-            style={styles.imageContainer}
-            source={require("../../../assets/pngegg.png")}
-          />
-        </View>
-        <View style={styles.audioPlayerContainer}>
-          <Text numberOfLines={1} style={styles.audioName}>
+      <Container>
+      <MaterialIcons name="equalizer" size={24} color="red" />
+        <AudioCount>{`${context.currentAudioIndex + 1} / ${context.totalAudioCount}`}</AudioCount>
+        <MusicArt>
+          <Lottie autoSize resizeMode="contain" source={sound} autoPlay={true}loop />
+        </MusicArt>
+        <AudioContainer>
+          <AudioName numberOfLines={1} style={styles.audioName}>
             {context.currentAudio.filename}
-          </Text>
+          </AudioName>
           <Slider
             style={{ width: width, height: 40 }}
             minimumValue={0}
@@ -44,20 +42,20 @@ const Player = () => {
             minimumTrackTintColor={color.DETAILS_ICONS}
             maximumTrackTintColor="#505050"
           />
-          <View style={styles.audioController}>
+          <AudioController style={styles.audioController}>
             <PlayerButtom iconType="PREV" />
-            <View style={styles.fix}>
+            <ButtomAlign>
               <PlayerButtom
                 onPress={() => {{}}}
                 style={styles.buttomPlay}
                 size={55}
                 iconType={context.isPlaying ? "PLAY" : "PAUSE"}
               />
-            </View>
+            </ButtomAlign>
             <PlayerButtom iconType="NEXT" />
-          </View>
-        </View>
-      </View>
+          </AudioController>
+        </AudioContainer>
+      </Container>
     </Screen>
   );
 };

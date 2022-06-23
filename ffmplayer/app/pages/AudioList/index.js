@@ -1,14 +1,12 @@
-import { Text, ScrollView, View, Dimensions } from "react-native";
 import React, { Component } from "react";
-import styles from "../AudioList/styles";
+import { Dimensions } from "react-native";
 import { AudioContext } from "../../context/AudioProvider";
-import { Ionicons } from "@expo/vector-icons";
 import { RecyclerListView, LayoutProvider } from "recyclerlistview";
+import { Audio } from "expo-av";
+import { nextPlay, pause, play, resume } from "../../misc/audioController";
 import AudioListItem from "../../components/AudioListItem";
 import Screen from "../../components/Screen";
 import OptionsModal from "../../components/OptionsModal";
-import { Audio } from "expo-av";
-import { nextPlay, pause, play, resume } from "../../misc/audioController";
 
 export class AudioList extends Component {
   static contextType = AudioContext;
@@ -40,8 +38,10 @@ export class AudioList extends Component {
       this.context.updateState(this.context, {
         playbackPosition: playbackStatus.positionMillis,
         playbackDuration: playbackStatus.durationMillis,
-      })
-    }
+      });
+    };
+
+    if(playbackStatus.didJustFinished){}
   }
 
   handleAudioPress = async audio => {
