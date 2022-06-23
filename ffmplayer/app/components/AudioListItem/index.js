@@ -23,8 +23,8 @@ const convertTime = minutes => {
 }
 
 const renderPlayPauseIcons = isPlaying => {
-  if(isPlaying) return <Ionicons name="ios-play" size={24} color="black" />
-  return <Ionicons name="ios-pause" size={24} color="black" />
+  if(isPlaying) return <Ionicons name="ios-pause" size={24} color={color.DETAILS_ICONS} />
+  return <Ionicons name="ios-play" size={24} color={color.DETAILS_ICONS} />
 }
 
 const AudioListItem = ({ title, duration, onOptionPress, onAudioPress, isPlaying, activeListItem}) => {

@@ -1,10 +1,11 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome5 } from '@expo/vector-icons';
-import { Ionicons, MaterialCommunityIcons, AntDesign, } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import AudioList from "../screens/AudioList/index";
 import Player from "../screens/Player/index";
 import PlayList from "../screens/PlayList";
+import Settings from "../screens/Settings";
 import color from "../misc/color";
 
 const Tab = createBottomTabNavigator();
@@ -26,12 +27,12 @@ const AppNavigator = () => {
         component={AudioList}
         options={{
           title: "",
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: () => {
             return (
               <Ionicons
                 name="headset"
                 size={25}
-                color={color}
+                color={color.DETAILS_ICONS}
                 style={{ marginBottom: -15 }}
               />
             );
@@ -43,9 +44,14 @@ const AppNavigator = () => {
         component={Player}
         options={{
           title: "",
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: () => {
             return (
-              <FontAwesome5 name="compact-disc" size={35} color='red' style={{marginBottom: -10}} /> 
+              <FontAwesome5
+                name="compact-disc"
+                size={25}
+                color={color.DETAILS_ICONS}
+                style={{ marginBottom: -10 }}
+              />
             );
           },
         }}
@@ -61,7 +67,24 @@ const AppNavigator = () => {
                 name="playlist-music"
                 size={25}
                 color={color.DETAILS_ICONS}
-                style={{marginBottom: -10}}
+                style={{ marginBottom: -10 }}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: "",
+          tabBarIcon: () => {
+            return (
+              <Feather
+                name="settings"
+                size={24}
+                color={color.DETAILS_ICONS}
+                style={{ marginBottom: -10 }}
               />
             );
           },
