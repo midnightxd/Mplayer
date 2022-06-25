@@ -1,17 +1,17 @@
-import react from "react";
-import styled from 'styled-components'
-import { StyleSheet, Dimensions } from "react-native";
-import color from "../../misc/color";
+import react from 'react';
+import styled from 'styled-components';
+import { Dimensions } from 'react-native';
+import dark from '../../theme/dark';
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${props => color.APP_BG};
+  background-color: ${props => dark.COLOR.APP_BG};
 `;
 
 export const AudioCount = styled.Text`
-  color: ${props => color.FONT};
+  color: ${props => dark.COLOR.FONT};
   font-size: 20px;
   text-align: right;
   margin-right: 20px;
@@ -28,7 +28,7 @@ export const AudioContainer = styled.View`
 `;
 
 export const AudioName = styled.Text`
-  color: ${props => color.FONT_MEDIUM};
+  color: ${props => dark.COLOR.FONT_600};
   font-weight: bold;
   font-size: 22px;
 `;
@@ -36,39 +36,18 @@ export const AudioName = styled.Text`
 export const AudioController = styled.View`
   width: ${props => width};
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   padding-bottom: 40px;
 `;
 
 export const ButtomAlign = styled.View`
-  background-color: ${props => color.APP_BG};
+  background-color: ${props => dark.COLOR.APP_BG};
   border-width: 2px;
-  border-color: ${props => color.DETAILS_ICONS};
+  border-color: ${props => dark.COLOR.DETAILS_ICONS};
   border-radius: 50px;
   height: 80px;
+  margin: 0 20px 0 20px;
   justify-content: center;
   align-items: center;
 `;
-
-const styles = StyleSheet.create({
-  fix: {
-    backgroundColor: color.APP_BG,
-    marginHorizontal: 10,
-    borderWidth: 2,
-    borderColor: color.DETAILS_ICONS,
-    borderRadius: 50,
-    height: 80,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttomPlay: {
-    marginHorizontal: 10,
-  },
-  imageContainer: {
-    width: 400,
-    height: 400,
-  },
-});
-
-export default styles;

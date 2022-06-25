@@ -6,7 +6,7 @@ import AudioList from "../pages/AudioList";
 import Player from "../pages/Player";
 import PlayList from "../pages/PlayList";
 import Settings from "../pages/Settings";
-import color from "../misc/color";
+import dark from "../theme/dark";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,9 +16,9 @@ const AppNavigator = () => {
       screenOptions={() => ({
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: color.BOTTOM_TAB_NAVIGATOR,
+          backgroundColor: dark.COLOR.BOTTOM_TAB_NAVIGATOR,
           borderWidth: 1,
-          borderTopColor: color.APP_BG,
+          borderTopColor: dark.COLOR.APP_BG,
         },
       })}
     >
@@ -32,7 +32,7 @@ const AppNavigator = () => {
               <Ionicons
                 name="headset"
                 size={25}
-                color={color.DETAILS_ICONS}
+                color={dark.COLOR.DETAILS_ICONS}
                 style={{ marginBottom: -15 }}
               />
             );
@@ -49,7 +49,7 @@ const AppNavigator = () => {
               <FontAwesome5
                 name="compact-disc"
                 size={25}
-                color={color.DETAILS_ICONS}
+                color={dark.COLOR.DETAILS_ICONS}
                 style={{ marginBottom: -10 }}
               />
             );
@@ -66,7 +66,7 @@ const AppNavigator = () => {
               <MaterialCommunityIcons
                 name="playlist-music"
                 size={25}
-                color={color.DETAILS_ICONS}
+                color={dark.COLOR.DETAILS_ICONS}
                 style={{ marginBottom: -10 }}
               />
             );
@@ -83,7 +83,7 @@ const AppNavigator = () => {
               <Feather
                 name="settings"
                 size={24}
-                color={color.DETAILS_ICONS}
+                color={dark.COLOR.DETAILS_ICONS}
                 style={{ marginBottom: -10 }}
               />
             );

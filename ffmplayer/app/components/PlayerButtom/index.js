@@ -1,12 +1,11 @@
-import react from "react";
-import { AntDesign } from "@expo/vector-icons";
-import color from "../../misc/color";
-import styles from "./styles";
+import react from 'react';
+import { AntDesign } from '@expo/vector-icons';
+import dark from '../../theme/dark';
 
-const PlayerButtom = (props) => {
-  const { iconType, size = 40, iconColor = color.FONT, Props, onPress } = props
+const PlayerButtom = props => {
+  const { iconType, size = 40, iconColor = dark.COLOR.FONT_600, Props, onPress } = props;
   const getIconName = type => {
-    switch(type) {
+    switch (type) {
       case 'PLAY':
         return 'pausecircle';
       case 'PAUSE':
@@ -16,7 +15,7 @@ const PlayerButtom = (props) => {
       case 'PREV':
         return 'banckward';
     }
-  }
+  };
   return <AntDesign onPress={onPress} name={getIconName(iconType)} size={size} color={iconColor} {...props} />;
 };
 

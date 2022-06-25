@@ -1,6 +1,6 @@
 import react from "react";
 import styled from 'styled-components';
-import color from "../../misc/color";
+import color from "../../theme/dark";
 
 export const Container = styled.View`
   justify-content: center;

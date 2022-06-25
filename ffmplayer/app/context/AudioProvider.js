@@ -1,8 +1,8 @@
-import react, { Component, createContext } from "react";
-import { Text, View, Alert } from "react-native";
-import * as MediaLibrary from "expo-media-library";
-import Message from "../components/AlertMessage";
-import { DataProvider } from "recyclerlistview";
+import react, { Component, createContext } from 'react';
+import { Alert } from 'react-native';
+import * as MediaLibrary from 'expo-media-library';
+import Message from '../components/AlertMessage';
+import { DataProvider } from 'recyclerlistview';
 
 export const AudioContext = createContext();
 
@@ -26,13 +26,13 @@ export class AudioProvider extends Component {
   }
 
   permissionAllert = () => {
-    Alert.alert("Permission required", "This app needs to read audio files", [
+    Alert.alert('Permission required', 'This app needs to read audio files', [
       {
-        text: "I am ready",
+        text: 'I am ready',
         onPress: () => this.getPermission(),
       },
       {
-        text: "cancel",
+        text: 'cancel',
         onPress: () => this.permissionAllert(),
       },
     ]);
@@ -41,29 +41,27 @@ export class AudioProvider extends Component {
   getAudioFiles = async () => {
     const { dataProvider, audioFiles } = this.state;
     let media = await MediaLibrary.getAssetsAsync({
-      mediaType: "audio",
+      mediaType: 'audio',
     });
 
     media = await MediaLibrary.getAssetsAsync({
-      mediaType: "audio",
+      mediaType: 'audio',
       first: media.totalCount,
     });
     this.totalAudioCount = media.totalCount;
 
     this.setState({
       ...this.state,
-      dataProvider: dataProvider.cloneWithRows([
-        ...audioFiles,
-        ...media.assets,
-      ]),
+      dataProvider: dataProvider.cloneWithRows([...audioFiles, ...media.assets]),
       audioFiles: [...audioFiles, ...media.assets],
     });
   };
 
   getPermission = async () => {
     const permission = await MediaLibrary.getPermissionsAsync();
+
+    // we want to get all the audio files
     if (permission.granted) {
-      // we want to get all the audio files
       this.getAudioFiles();
     }
 
@@ -72,18 +70,20 @@ export class AudioProvider extends Component {
     }
 
     if (!permission.granted && permission.canAskAgain) {
-      const { status, canAskAgain } =
-        await MediaLibrary.requestPermissionsAsync();
-      if (status === "denied" && canAskAgain) {
-        // we are going to display alert that user must allow this permission to work this app
+      const { status, canAskAgain } = await MediaLibrary.requestPermissionsAsync();
+
+      // we are going to display alert that user must allow this permission to work this app
+      if (status === 'denied' && canAskAgain) {
         this.permissionAllert();
       }
-      if (status === "granted") {
-        // we want to get all the audio files
+
+      // we want to get all the audio files
+      if (status === 'granted') {
         this.getAudioFiles();
       }
-      if (status === "denied" && !canAskAgain) {
-        // we want to display some error to the user
+
+      // we want to display some error to the user
+      if (status === 'denied' && !canAskAgain) {
         this.setState({ ...this.state, permissionError: true });
       }
     }

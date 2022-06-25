@@ -8,7 +8,7 @@ export const play = async (playbackObject, uri) => {
 };
 
 // PauseAudio
-export const pause = async (playbackObject) => {
+export const pause = async playbackObject => {
   try {
     return await playbackObject.setStatusAsync({shouldPlay: false});
   } catch (error) {
@@ -17,7 +17,7 @@ export const pause = async (playbackObject) => {
 };
 
 // ResumeAudio
-export const resume = async (playbackObject) => {
+export const resume = async playbackObject => {
   try {
     return await playbackObject.playAsync();
   } catch (error) {
