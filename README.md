@@ -59,7 +59,8 @@ This section should list any major frameworks/libraries used to bootstrap the pr
 * [Styled Components](https://styled-components.com)
 * [JavaScript](https://www.javascript.com)
 * [Node.js](https://nodejs.org/en/)
-
+* [Async Storage](https://react-native-async-storage.github.io/async-storage/docs/usage/)
+* [Lottie](https://lottiefiles.com)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
