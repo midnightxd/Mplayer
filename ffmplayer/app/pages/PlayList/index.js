@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import styles from './styles';
+import {Text } from 'react-native';
+import { Container } from './styles';
 
 const PlayList = () => {
   return (
-    <View style={styles.container}>
+    <Container>
       <Text>Play List</Text>
-    </View>
+    </Container>
   )
 }
 

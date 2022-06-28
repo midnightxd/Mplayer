@@ -3,10 +3,11 @@ import { Dimensions } from 'react-native';
 import { AudioContext } from '../../context/AudioProvider';
 import { RecyclerListView, LayoutProvider } from 'recyclerlistview';
 import { Audio } from 'expo-av';
-import { nextPlay, pause, play, resume } from '../../theme/audioController';
+import { nextPlay, pause, play, resume } from '../../misc/audioController';
 import AudioListItem from '../../components/AudioListItem';
 import Screen from '../../components/ScreenView';
 import OptionsModal from '../../components/OptionsModal';
+import { storeAudioForNextOpening } from '../../misc/helper';
 
 export class AudioList extends Component {
   static contextType = AudioContext;
@@ -33,7 +34,7 @@ export class AudioList extends Component {
     },
   );
 
-  onPlabackStatusUpdate = playbackStatus => {
+  onPlabackStatusUpdate = async playbackStatus => {
     if (playbackStatus.isLoaded && playbackStatus.isPlaying) {
       this.context.updateState(this.context, {
         playbackPosition: playbackStatus.positionMillis,
@@ -41,7 +42,31 @@ export class AudioList extends Component {
       });
     }
 
-    if (playbackStatus.didJustFinished) {
+    if (playbackStatus.didJustFinish) {
+      const nextAudioIndex = this.context.currentAudioIndex + 1;
+
+      // There is no next audio play or the current audio is the last
+      if (nextAudioIndex >= this.context.totalAudioCount) {
+        this.context.playbackObject.unloadAsync();
+        return this.context.updateState(this.context, {
+          soundObject: null,
+          currentAudio: this.context.audioFiles[0],
+          isPlaying: false,
+          currentAudioIndex: [0],
+          playbackPosition: null,
+          playbackDuration: null,
+        });
+      }
+
+      // Otherwise we want to select the next audio
+      const audio = this.context.audioFiles[nextAudioIndex];
+      const status = await nextPlay(this.context.playbackObject, audio.uri);
+      this.context.updateState(this.context, {
+        soundObject: status,
+        currentAudio: audio,
+        isPlaying: true,
+        currentAudioIndex: nextAudioIndex,
+      });
     }
   };
 
@@ -62,7 +87,8 @@ export class AudioList extends Component {
         currentAudioIndex: index,
       });
 
-      return playbackObject.setOnPlaybackStatusUpdate(this.onPlabackStatusUpdate);
+      playbackObject.setOnPlaybackStatusUpdate(this.onPlabackStatusUpdate);
+      return storeAudioForNextOpening(audio, index);
     }
 
     // PuseAudio
@@ -99,6 +125,10 @@ export class AudioList extends Component {
     }
   };
 
+  componentDidMount() {
+    this.context.loadPreviousAudio();
+  }
+
   rowRender = (type, item, index, extendedState) => {
     return (
       <AudioListItem
@@ -119,6 +149,7 @@ export class AudioList extends Component {
     return (
       <AudioContext.Consumer>
         {({ dataProvider, isPlaying }) => {
+          if (!dataProvider._data.length) return null;
           return (
             <Screen>
               <RecyclerListView

@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
-import { Dimensions } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { Dimensions, Text } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AudioContext } from '../../context/AudioProvider';
-import Lottie from 'lottie-react-native';
 import Slider from '@react-native-community/slider';
 import Screen from '../../components/ScreenView';
 import PlayerButtom from '../../components/PlayerButtom';
 import { Container, AudioCount, MusicArt, AudioName, AudioContainer, AudioController, ButtomAlign } from './styles';
-import sound from '../../../assets/sound.json';
 import dark from '../../theme/dark';
 
 const { width } = Dimensions.get('window');
@@ -22,13 +20,19 @@ const Player = () => {
     return 0;
   };
 
+  useEffect(() => {
+    context.loadPreviousAudio();
+  }, []);
+
+  if (!context.currentAudio) return null;
+
   return (
     <Screen>
       <Container>
         <MaterialIcons name="equalizer" size={24} color={dark.COLOR.DETAILS_ICONS} />
         <AudioCount>{`${context.currentAudioIndex + 1} / ${context.totalAudioCount}`}</AudioCount>
         <MusicArt>
-          <Lottie autoSize resizeMode="contain" source={sound} autoPlay={true} loop />
+          <Text style={{ color: '#ffffff' }}>is playing</Text>
         </MusicArt>
         <AudioContainer>
           <AudioName numberOfLines={1}>{context.currentAudio.filename}</AudioName>
