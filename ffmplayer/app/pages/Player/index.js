@@ -7,6 +7,7 @@ import Screen from '../../components/ScreenView';
 import PlayerButtom from '../../components/PlayerButtom';
 import { Container, AudioCount, MusicArt, AudioName, AudioContainer, AudioController, ButtomAlign } from './styles';
 import dark from '../../theme/dark';
+import {pause, play, resume} from '../../misc/audioController';
 
 const { width } = Dimensions.get('window');
 
@@ -23,6 +24,40 @@ const Player = () => {
   useEffect(() => {
     context.loadPreviousAudio();
   }, []);
+
+  const handlePlayPause = async () => {
+    // Play
+    if (context.soundObject === null) {
+      const audio = context.currentAudio;
+      const status = await play(context.playbackObject, audio.uri)
+
+      return context.updateState(context, {
+        soundObject: status,
+        currentAudio: audio,
+        isPlaying: true,
+        currentAudioIndex: context.currentAudioIndex
+      });
+    };
+
+    // Pause
+    if (context.soundObject && context.soundObject.isPlaying) { 
+      const status = await pause(context.playbackObject);
+
+      return context.updateState(context, {
+        soundObject: status,
+        isPlaying: false,
+      });
+    };
+
+    // Resume
+    if (context.soundObject && !context.soundObject.isPlaying) {
+      const status = await resume(context.playbackObject);
+      return context.updateState(context, {
+        soundObject: status,
+        isPlaying: true,
+      });
+    };
+  }
 
   if (!context.currentAudio) return null;
 
@@ -48,7 +83,7 @@ const Player = () => {
             <PlayerButtom iconType="PREV" />
             <ButtomAlign>
               <PlayerButtom
-                onPress={() => null}
+                onPress={(handlePlayPause)}
                 size={55}
                 style={{ marginHorizontal: 10 }}
                 iconType={context.isPlaying ? 'PLAY' : 'PAUSE'}

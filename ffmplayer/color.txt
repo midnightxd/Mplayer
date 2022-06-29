@@ -1,0 +1,9 @@
+purple: #943AB0
+yellow: #A28903
+cyan: #00A692
+green: #6EA353
+red: #C95536
+pink: #D70B88
+orange: #DE7B0E
+blue: #115280
+light-yellow: #BFAC52

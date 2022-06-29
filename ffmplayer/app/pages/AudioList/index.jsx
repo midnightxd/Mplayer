@@ -48,7 +48,7 @@ export class AudioList extends Component {
       // There is no next audio play or the current audio is the last
       if (nextAudioIndex >= this.context.totalAudioCount) {
         this.context.playbackObject.unloadAsync();
-        return this.context.updateState(this.context, {
+        this.context.updateState(this.context, {
           soundObject: null,
           currentAudio: this.context.audioFiles[0],
           isPlaying: false,
@@ -56,6 +56,8 @@ export class AudioList extends Component {
           playbackPosition: null,
           playbackDuration: null,
         });
+        
+        await storeAudioForNextOpening(this.context.audioFiles[0], 0);
       }
 
       // Otherwise we want to select the next audio
@@ -67,6 +69,8 @@ export class AudioList extends Component {
         isPlaying: true,
         currentAudioIndex: nextAudioIndex,
       });
+
+      await storeAudioForNextOpening(audio, nextAudioIndex);
     }
   };
 
