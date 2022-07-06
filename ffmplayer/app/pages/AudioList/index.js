@@ -15,7 +15,6 @@ export class AudioList extends Component {
   constructor(props) {
     super(props);
     this.state = { OptionsModalVisible: false };
-
     this.currentItem = {};
   }
 
@@ -34,7 +33,7 @@ export class AudioList extends Component {
     },
   );
 
-  onPlabackStatusUpdate = async playbackStatus => {
+  onPlaybackStatusUpdate = async playbackStatus => {
     if (playbackStatus.isLoaded && playbackStatus.isPlaying) {
       this.context.updateState(this.context, {
         playbackPosition: playbackStatus.positionMillis,
@@ -91,7 +90,7 @@ export class AudioList extends Component {
         currentAudioIndex: index,
       });
 
-      playbackObject.setOnPlaybackStatusUpdate(this.onPlabackStatusUpdate);
+      playbackObject.setOnPlaybackStatusUpdate(this.onPlaybackStatusUpdate);
       return storeAudioForNextOpening(audio, index);
     }
 

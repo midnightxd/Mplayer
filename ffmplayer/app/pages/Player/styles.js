@@ -33,8 +33,8 @@ export const AudioName = styled.Text`
   font-size: 22px;
 `;
 
+// width here
 export const AudioController = styled.View`
-  width: ${props => width};
   flex-direction: row;
   justify-content: center;
   align-items: center;

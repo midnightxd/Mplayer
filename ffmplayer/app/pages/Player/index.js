@@ -1,13 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AudioContext } from '../../context/AudioProvider';
+import { Container, AudioCount, MusicArt, AudioName, AudioContainer, AudioController, ButtomAlign } from './styles';
+import { pause, play, resume } from '../../misc/audioController';
+import { storeAudioForNextOpening } from '../../misc/helper';
 import Slider from '@react-native-community/slider';
+import LottieView from 'lottie-react-native';
+import rocket from '../../../assets/rocket.json';
 import Screen from '../../components/ScreenView';
 import PlayerButtom from '../../components/PlayerButtom';
-import { Container, AudioCount, MusicArt, AudioName, AudioContainer, AudioController, ButtomAlign } from './styles';
 import dark from '../../theme/dark';
-import {pause, play, resume} from '../../misc/audioController';
 
 const { width } = Dimensions.get('window');
 
@@ -25,29 +28,30 @@ const Player = () => {
     context.loadPreviousAudio();
   }, []);
 
+  // Player, pause and resume
   const handlePlayPause = async () => {
     // Play
     if (context.soundObject === null) {
       const audio = context.currentAudio;
-      const status = await play(context.playbackObject, audio.uri)
+      const status = await play(context.playbackObject, audio);
 
       return context.updateState(context, {
         soundObject: status,
         currentAudio: audio,
         isPlaying: true,
-        currentAudioIndex: context.currentAudioIndex
+        currentAudioIndex: context.currentAudioIndex,
       });
-    };
+    }
 
     // Pause
-    if (context.soundObject && context.soundObject.isPlaying) { 
+    if (context.soundObject && context.soundObject.isPlaying) {
       const status = await pause(context.playbackObject);
 
       return context.updateState(context, {
         soundObject: status,
         isPlaying: false,
       });
-    };
+    }
 
     // Resume
     if (context.soundObject && !context.soundObject.isPlaying) {
@@ -56,8 +60,31 @@ const Player = () => {
         soundObject: status,
         isPlaying: true,
       });
-    };
-  }
+    }
+  };
+
+  const handlePreview = () => {};
+
+  const handleNext = () => {
+    console.log('Next');
+    // const { isLoaded } = await context.playbackObject.getStatusAsync();
+    // const isLastAudio = context.currentAudioIndex + 1 === context.totalAudioCount;
+    // let audio = context.audioFiles[context.currentAudioIndex + 1];
+    // let index;
+    // let status;
+    // if (!isLoaded && !isLastAudio) {
+    //   index = context.currentAudioIndex + 1;
+    //   status = await play(context.playbackObject, audio.uri);
+    // }
+    // context.updateState(context, {
+    //   currentAudio: audio,
+    //   playbackObject: context.playbackObject,
+    //   soundObject: status,
+    //   isPlaying: true,
+    //   currentAudioIndex: index,
+    // });
+    // storeAudioForNextOpening(audio, index);
+  };
 
   if (!context.currentAudio) return null;
 
@@ -67,7 +94,8 @@ const Player = () => {
         <MaterialIcons name="equalizer" size={24} color={dark.COLOR.DETAILS_ICONS} />
         <AudioCount>{`${context.currentAudioIndex + 1} / ${context.totalAudioCount}`}</AudioCount>
         <MusicArt>
-          <Text style={{ color: '#ffffff' }}>is playing</Text>
+          <Image style={{width: 400, height: 400, borderRadius: 50}} source={require('../../../assets/276031371_2796568863822619_6118180413241118822_n.jpeg')} />
+          {/*<LottieView source={rocket} autoPlay={true} loop />*/}
         </MusicArt>
         <AudioContainer>
           <AudioName numberOfLines={1}>{context.currentAudio.filename}</AudioName>
@@ -80,16 +108,16 @@ const Player = () => {
             maximumTrackTintColor="#505050"
           />
           <AudioController>
-            <PlayerButtom iconType="PREV" />
+            <PlayerButtom iconType="PREV" onPress={handlePreview} />
             <ButtomAlign>
               <PlayerButtom
-                onPress={(handlePlayPause)}
+                onPress={handlePlayPause}
                 size={55}
                 style={{ marginHorizontal: 10 }}
                 iconType={context.isPlaying ? 'PLAY' : 'PAUSE'}
               />
             </ButtomAlign>
-            <PlayerButtom iconType="NEXT" />
+            <PlayerButtom iconType="NEXT" onPress={handleNext} />
           </AudioController>
         </AudioContainer>
       </Container>

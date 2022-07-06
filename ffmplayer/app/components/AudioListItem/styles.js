@@ -38,27 +38,18 @@ export const TitleContainer = styled.View`
   padding-left: 20px;
 `;
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 16,
-    color: dark.COLOR.FONT,
-  },
-  rightContainer: {
-    flexBasis: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  separator: {
-    width: width,
-    backgroundColor: '#333',
-    opacity: 0,
-    height: 1,
-    marginTop: 10,
-  },
-  timeText: {
-    fontSize: 12,
-    color: '#ccc',
-  },
-});
+export const Title = styled.Text`
+  font-size: 16px;
+  color: ${props => dark.COLOR.FONT_300};
+`;
 
-export default styles;
+export const TimeTitle = styled.Text`
+  font-size: 12px;
+  color: ${props => dark.COLOR.FONT_600};
+`;
+
+export const RightContainer = styled.View`
+  flex-basis: 30px;
+  justify-content: center;
+  align-items: center;
+`;

@@ -2,7 +2,7 @@ import react from 'react';
 import { TouchableWithoutFeedback, View, Text } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { Container, LeftContainer, Thumbnail, ThumbnailText, TitleContainer } from './styles';
+import { Container, LeftContainer, Thumbnail, ThumbnailText, TitleContainer, Title, TimeTitle, RightContainer } from './styles';
 import styles from './styles';
 import dark from '../../theme/dark';
 
@@ -38,21 +38,15 @@ const AudioListItem = ({ title, duration, onOptionPress, onAudioPress, isPlaying
               <ThumbnailText>{activeListItem ? renderPlayPauseIcons(isPlaying) : getThumbnailText(title)}</ThumbnailText>
             </Thumbnail>
             <TitleContainer>
-              <Text
-                numberOfLines={1}
-                style={[styles.title, { color: activeListItem ? dark.COLOR.FONT_600 : dark.COLOR.FONT_300 }]}
-              >
-                {title}
-              </Text>
-              <Text style={styles.timeText}>{convertTime(duration)}</Text>
+              <Title numberOfLines={1}>{title}</Title>
+              <TimeTitle>{convertTime(duration)}</TimeTitle>
             </TitleContainer>
           </LeftContainer>
         </TouchableWithoutFeedback>
-        <View style={styles.rightContainer}>
+        <RightContainer>
           <MaterialCommunityIcons onPress={onOptionPress} name="dots-vertical" size={24} color={dark.COLOR.DETAILS_ICONS} />
-        </View>
+        </RightContainer>
       </Container>
-      <View style={styles.separator} />
     </>
   );
 };
