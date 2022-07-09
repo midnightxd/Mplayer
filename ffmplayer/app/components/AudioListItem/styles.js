@@ -23,8 +23,9 @@ export const Thumbnail = styled.View`
   flex-basis: 40px;
   justify-content: center;
   align-items: center;
-  border-radius: 40px;
-  background-color: ${activeListItem => (activeListItem ? dark.COLOR.THUMBNAIL_BG : dark.COLOR.SOUND_SELECT)};
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: ${() => dark.COLOR.DRAW_DETAILS};
 `;
 
 export const ThumbnailText = styled.Text`
@@ -40,7 +41,7 @@ export const TitleContainer = styled.View`
 
 export const Title = styled.Text`
   font-size: 16px;
-  color: ${props => dark.COLOR.FONT_300};
+  color: ${props => (props.isPlaying === 'true' ? dark.COLOR.DRAW_DETAILS : dark.COLOR.FONT_300)};
 `;
 
 export const TimeTitle = styled.Text`

@@ -38,16 +38,16 @@ export const AudioController = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 `;
 
 export const ButtomAlign = styled.View`
-  background-color: ${props => dark.COLOR.APP_BG};
-  border-width: 2px;
-  border-color: ${props => dark.COLOR.DETAILS_ICONS};
-  border-radius: 50px;
-  height: 80px;
-  margin: 0 20px 0 20px;
+  background-color: ${props => dark.COLOR.BACKGROUND};
+  border-width: 1px;
+  border-color: ${props => dark.COLOR.DRAW_DETAILS};
+  border-radius: 15px;
+  height: 100px;
+  margin: 0 30px 0 30px;
   justify-content: center;
   align-items: center;
 `;

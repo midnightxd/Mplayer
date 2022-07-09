@@ -7,9 +7,9 @@ const PlayerButtom = props => {
   const getIconName = type => {
     switch (type) {
       case 'PLAY':
-        return 'pausecircle';
+        return 'pause';
       case 'PAUSE':
-        return 'playcircleo';
+        return 'caretright';
       case 'NEXT':
         return 'forward';
       case 'PREV':

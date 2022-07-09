@@ -1,24 +1,28 @@
 export default {
   COLOR: {
-    BACKGROUND: "#000000",
-    ACTIVE_BG: "#87F38D",
-    ACTIVE_FONT: "#3E2BA6",
+    BACKGROUND: '#000000',
+    ACTIVE_BG: '#87F38D',
+    ACTIVE_FONT: '#3E2BA6',
 
-    BOTTOM_TAB_NAVIGATOR: "#151515",
+    BOTTOM_TAB_NAVIGATOR: '#151515',
 
-    FONT_300: "#CCC",
-    FONT_400: "#D30000",
-    FONT_600: "#707070",
-    FONT_ICONS: "#8A0DBD",
+    DRAW_DETAILS: '#00FF36',
 
-    THUMBNAIL_BG: "rgba(252, 19, 61, 0.8)",
+    FONT_DETAILS: '#00FF36',
 
-    MODAL_BG: "rgba(0, 0, 0, 0.5)",
+    FONT_300: '#CCC',
+    FONT_400: '#D30000',
+    FONT_600: '#707070',
+    FONT_ICONS: '#8A0DBD',
 
-    TRANSPARENCY: "#101010",
+    THUMBNAIL_BG: 'rgba(252, 19, 61, 0.8)',
 
-    DETAILS_ICONS: "#FC133D",
+    MODAL_BG: 'rgba(0, 0, 0, 0.5)',
 
-    SOUND_SELECT: "#565656",
+    TRANSPARENCY: '#101010',
+
+    DETAILS_ICONS: '#FC133D',
+
+    SOUND_SELECT: '#565656',
   },
 };

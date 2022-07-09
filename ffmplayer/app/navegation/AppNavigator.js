@@ -1,12 +1,12 @@
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Ionicons, MaterialCommunityIcons, Feather } from "@expo/vector-icons";
-import AudioList from "../pages/AudioList";
-import Player from "../pages/Player";
-import PlayList from "../pages/PlayList";
-import Settings from "../pages/Settings";
-import dark from "../theme/dark";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
+import AudioList from '../pages/AudioList';
+import Player from '../pages/Player';
+import PlayList from '../pages/PlayList';
+import Settings from '../pages/Settings';
+import dark from '../theme/dark';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,16 +26,9 @@ const AppNavigator = () => {
         name="AudioList"
         component={AudioList}
         options={{
-          title: "",
+          title: '',
           tabBarIcon: () => {
-            return (
-              <Ionicons
-                name="headset"
-                size={25}
-                color={dark.COLOR.DETAILS_ICONS}
-                style={{ marginBottom: -15 }}
-              />
-            );
+            return <Ionicons name="headset" size={25} color={dark.COLOR.DRAW_DETAILS} style={{ marginBottom: -15 }} />;
           },
         }}
       />
@@ -43,16 +36,9 @@ const AppNavigator = () => {
         name="Player"
         component={Player}
         options={{
-          title: "",
+          title: '',
           tabBarIcon: () => {
-            return (
-              <FontAwesome5
-                name="compact-disc"
-                size={25}
-                color={dark.COLOR.DETAILS_ICONS}
-                style={{ marginBottom: -10 }}
-              />
-            );
+            return <FontAwesome5 name="compact-disc" size={25} color={dark.COLOR.DETAILS_ICONS} style={{ marginBottom: -10 }} />;
           },
         }}
       />
@@ -60,7 +46,7 @@ const AppNavigator = () => {
         name="PlayList"
         component={PlayList}
         options={{
-          title: "",
+          title: '',
           tabBarIcon: ({ size }) => {
             return (
               <MaterialCommunityIcons
@@ -77,16 +63,9 @@ const AppNavigator = () => {
         name="Settings"
         component={Settings}
         options={{
-          title: "",
+          title: '',
           tabBarIcon: () => {
-            return (
-              <Feather
-                name="settings"
-                size={24}
-                color={dark.COLOR.DETAILS_ICONS}
-                style={{ marginBottom: -10 }}
-              />
-            );
+            return <Feather name="settings" size={24} color={dark.COLOR.DETAILS_ICONS} style={{ marginBottom: -10 }} />;
           },
         }}
       />

@@ -1,9 +1,8 @@
 import react from 'react';
-import { TouchableWithoutFeedback, View, Text } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Container, LeftContainer, Thumbnail, ThumbnailText, TitleContainer, Title, TimeTitle, RightContainer } from './styles';
-import styles from './styles';
 import dark from '../../theme/dark';
 
 const getThumbnailText = fileName => fileName[0];
@@ -28,6 +27,11 @@ const renderPlayPauseIcons = isPlaying => {
   return <Ionicons name="ios-play" size={24} color={dark.COLOR.FONT_600} />;
 };
 
+const renderColor = isPlaying => {
+  if (isPlaying) return 'true';
+  return 'false';
+};
+
 const AudioListItem = ({ title, duration, onOptionPress, onAudioPress, isPlaying, activeListItem }) => {
   return (
     <>
@@ -44,7 +48,12 @@ const AudioListItem = ({ title, duration, onOptionPress, onAudioPress, isPlaying
           </LeftContainer>
         </TouchableWithoutFeedback>
         <RightContainer>
-          <MaterialCommunityIcons onPress={onOptionPress} name="dots-vertical" size={24} color={dark.COLOR.DETAILS_ICONS} />
+          <MaterialCommunityIcons
+            onPress={onOptionPress}
+            name="dots-horizontal-circle"
+            size={24}
+            color={dark.COLOR.DRAW_DETAILS}
+          />
         </RightContainer>
       </Container>
     </>

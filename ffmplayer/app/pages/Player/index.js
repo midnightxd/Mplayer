@@ -7,7 +7,7 @@ import { pause, play, resume } from '../../misc/audioController';
 import { storeAudioForNextOpening } from '../../misc/helper';
 import Slider from '@react-native-community/slider';
 import LottieView from 'lottie-react-native';
-import rocket from '../../../assets/rocket.json';
+import Art from '../../../assets/astro.json';
 import Screen from '../../components/ScreenView';
 import PlayerButtom from '../../components/PlayerButtom';
 import dark from '../../theme/dark';
@@ -94,8 +94,7 @@ const Player = () => {
         <MaterialIcons name="equalizer" size={24} color={dark.COLOR.DETAILS_ICONS} />
         <AudioCount>{`${context.currentAudioIndex + 1} / ${context.totalAudioCount}`}</AudioCount>
         <MusicArt>
-          <Image style={{width: 400, height: 400, borderRadius: 50}} source={require('../../../assets/276031371_2796568863822619_6118180413241118822_n.jpeg')} />
-          {/*<LottieView source={rocket} autoPlay={true} loop />*/}
+          <LottieView source={Art} autoPlay={true} loop />
         </MusicArt>
         <AudioContainer>
           <AudioName numberOfLines={1}>{context.currentAudio.filename}</AudioName>
@@ -104,7 +103,7 @@ const Player = () => {
             minimumValue={0}
             maximumValue={1}
             value={calculateSeebBar()}
-            minimumTrackTintColor={dark.COLOR.DETAILS_ICONS}
+            minimumTrackTintColor={dark.COLOR.DRAW_DETAILS}
             maximumTrackTintColor="#505050"
           />
           <AudioController>
@@ -112,8 +111,8 @@ const Player = () => {
             <ButtomAlign>
               <PlayerButtom
                 onPress={handlePlayPause}
-                size={55}
-                style={{ marginHorizontal: 10 }}
+                size={40}
+                style={{ marginHorizontal: 20 }}
                 iconType={context.isPlaying ? 'PLAY' : 'PAUSE'}
               />
             </ButtomAlign>

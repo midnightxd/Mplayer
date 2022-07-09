@@ -110,7 +110,7 @@ export class AudioProvider extends Component {
 
   componentDidMount() {
     this.getPermission();
-    if (this.state.playbackObject === null) this.setState(({...this.state, playbackObject: new Audio.Sound()}));
+    if (this.state.playbackObject === null) this.setState({ ...this.state, playbackObject: new Audio.Sound() });
   }
 
   updateState = (previewState, newState = {}) => {
