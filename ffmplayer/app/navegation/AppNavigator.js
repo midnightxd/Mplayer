@@ -27,9 +27,9 @@ const AppNavigator = () => {
         name="AudioList"
         component={AudioList}
         options={{
-          title: '',
+          title: 'Audio',
           tabBarIcon: () => {
-            return <Ionicons name="headset" size={25} color={dark.COLOR.DRAW_DETAILS} style={{ marginBottom: -15 }} />;
+            return <Ionicons name="headset" size={25} color={dark.COLOR.DRAW_DETAILS} />;
           },
         }}
       />
@@ -37,9 +37,9 @@ const AppNavigator = () => {
         name="Player"
         component={Player}
         options={{
-          title: '',
+          title: 'Player',
           tabBarIcon: () => {
-            return <FontAwesome5 name="compact-disc" size={25} color={dark.COLOR.DETAILS_ICONS} style={{ marginBottom: -10 }} />;
+            return <FontAwesome5 name="compact-disc" size={25} color={dark.COLOR.DAW_OPACITY} />;
           },
         }}
       />
@@ -47,16 +47,9 @@ const AppNavigator = () => {
         name="PlayList"
         component={PlayList}
         options={{
-          title: '',
-          tabBarIcon: ({ size }) => {
-            return (
-              <MaterialCommunityIcons
-                name="playlist-music"
-                size={25}
-                color={dark.COLOR.DETAILS_ICONS}
-                style={{ marginBottom: -10 }}
-              />
-            );
+          title: 'PlayList',
+          tabBarIcon: () => {
+            return <MaterialCommunityIcons name="playlist-music" size={24} color={dark.COLOR.DAW_OPACITY} />;
           },
         }}
       />
@@ -64,9 +57,9 @@ const AppNavigator = () => {
         name="Settings"
         component={Settings}
         options={{
-          title: '',
+          title: 'Settings',
           tabBarIcon: () => {
-            return <Feather name="settings" size={24} color={dark.COLOR.DETAILS_ICONS} style={{ marginBottom: -10 }} />;
+            return <Feather name="settings" size={24} color={dark.COLOR.DAW_OPACITY} />;
           },
         }}
       />

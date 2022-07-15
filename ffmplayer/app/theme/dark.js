@@ -1,12 +1,14 @@
 export default {
   COLOR: {
-    BACKGROUND: '#000000',
     ACTIVE_BG: '#87F38D',
     ACTIVE_FONT: '#3E2BA6',
+
+    BACKGROUND: '#000000',
 
     BOTTOM_TAB_NAVIGATOR: '#151515',
 
     DRAW_DETAILS: '#00FF36',
+    DAW_OPACITY: '#0CD700',
 
     FONT_DETAILS: '#00FF36',
 
