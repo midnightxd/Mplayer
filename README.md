@@ -41,8 +41,8 @@
 ## About The Project
 
 <div align="center" >
-  <img src="images/1.jpg" alt="Home Screen" width="420" >
-  <img src="images/2.jpg" alt="Player Screen" width="420" >
+  <img src="images/Screenshot_20220715-203957_Expo Go.jpg" alt="Home Screen" width="420" >
+  <img src="images/Screenshot_20220715-204413_Expo Go.jpg" alt="Player Screen" width="420" >
 </div>
 
 
